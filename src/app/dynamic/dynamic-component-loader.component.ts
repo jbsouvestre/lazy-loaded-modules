@@ -16,7 +16,7 @@ const COMPONENTS = {
         Load component: 
         <button (click)="loadComponent('A')">Load A</button>
         <button (click)="loadComponent('B')">Load B</button>
-        <dyn-host></dyn-host>    
+        <dyn-host></dyn-host>
 `
 })
 export class DynamicComponentLoaderComponent implements AfterViewInit {
