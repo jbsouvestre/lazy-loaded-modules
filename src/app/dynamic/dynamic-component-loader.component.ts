@@ -1,25 +1,36 @@
-import { Component } from '@angular/core';
+import {
+    Component, ComponentFactoryResolver, Injector, AfterViewInit
+} from '@angular/core';
 import { ComponentAComponent } from './component-a.component';
 import { ComponentBComponent } from './component-b.component';
+import { ComponentLoaderService } from './component-loader.service';
+
 
 const COMPONENTS = {
     A: ComponentAComponent,
     B: ComponentBComponent
 };
 
-
 @Component({
     template: `
         Load component: 
-        
         <button (click)="loadComponent('A')">Load A</button>
         <button (click)="loadComponent('B')">Load B</button>
-        <div #host></div>    
+        <dyn-host></dyn-host>    
 `
 })
-export class DynamicComponentLoaderComponent {
+export class DynamicComponentLoaderComponent implements AfterViewInit {
+    constructor(
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private injector: Injector,
+        private componentLoaderService: ComponentLoaderService
+    ) { }
 
-    public loadComponent(component: String) {
+    ngAfterViewInit() {
+        this.componentLoaderService.receiveContext(this.componentFactoryResolver, this.injector);
+    }
 
+    loadComponent(key: string) {
+        this.componentLoaderService.loadComponent(COMPONENTS[key]);
     }
 }

@@ -12,11 +12,8 @@ import { DynamicModule } from '../dynamic/dynamic.module';
         HomeComponent
     ],
 })
-export class HomeModule {
-
-}
+export class HomeModule { }
 
 export function loadHomeModule() {
-    console.log('load children');
     return HomeModule;
 }
