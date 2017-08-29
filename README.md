@@ -21,5 +21,5 @@ V                   V
 
 ````
 
-## Dependency Graph
-![dependency graph](https://raw.githubusercontent.com/jbsouvestre/lazy-loaded-modules/master/src/assets/Selection_789.png)
+## Injector Graph
+![dependency graph](https://raw.githubusercontent.com/jbsouvestre/lazy-loaded-modules/master/src/assets/injector_graph.png)
