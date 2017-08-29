@@ -1,6 +1,6 @@
 import {
     Component, OnInit, OnDestroy, ViewContainerRef, ViewChild, Type, ReflectiveInjector,
-    ComponentFactoryResolver, Injector
+    ComponentFactoryResolver, Injector, ComponentRef
 } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
@@ -16,7 +16,7 @@ export class DynamicComponentHost implements OnInit, OnDestroy {
     component: Type<Component>;
     reflectiveInjector: ReflectiveInjector;
     resolverSub: Subscription;
-    componentRef: any; // @TODO change to actual type
+    componentRef: ComponentRef<Component>;
     componentFactoryResolver: ComponentFactoryResolver;
     injector: Injector;
 
