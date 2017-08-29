@@ -16,6 +16,7 @@ export class DynamicComponentHost implements OnInit, OnDestroy {
     component: Type<Component>;
     reflectiveInjector: ReflectiveInjector;
     resolverSub: Subscription;
+    compLoaderSub: Subscription;
     componentRef: ComponentRef<Component>;
     componentFactoryResolver: ComponentFactoryResolver;
     injector: Injector;
@@ -28,17 +29,18 @@ export class DynamicComponentHost implements OnInit, OnDestroy {
             this.injector = resolver.injector;
         });
 
-        this.componentLoaderService.loadComponent$.subscribe(comp => {
+        this.compLoaderSub = this.componentLoaderService.loadComponent$.subscribe(comp => {
             this.loadComponent(comp);
         });
     }
 
     ngOnDestroy() {
         this.resolverSub.unsubscribe();
+        this.compLoaderSub.unsubscribe();
         this.clearComponent();
     }
 
-    public loadComponent(component: any) {
+    private loadComponent(component: Type<Component>) {
         this.clearComponent();
 
         this.component = component;
